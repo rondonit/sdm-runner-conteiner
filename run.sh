@@ -3,7 +3,7 @@
 set -e
 S3_BASE_BUCKET="s3://ste-siapesq"
 # Define o diretório do projeto dentro da pasta home do usuário atual
-PROJECT_DIR="/home/ubuntu/sdm_project"
+PROJECT_DIR="/home/ubuntu/sdm_runner"
 
 # --- Preparação Inicial ---
 echo "Baixando CSV de treinamento para 'guariba'."

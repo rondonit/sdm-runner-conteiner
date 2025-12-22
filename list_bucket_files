@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Este script lista o conteúdo de um bucket S3 (incluindo diretórios e arquivos)
+# de forma semelhante ao comando 'tree'.
+#
+# USO:
+#   1. Torne o script executável: chmod +x list_bucket_files
+#   2. Execute: ./list_bucket_files
+#   3. Opcional: Redirecione a saída para um arquivo: ./list_bucket_files > bucket_structure.txt
+
+# --- CONFIGURAÇÃO ---
+# Substitua 'YOUR_BUCKET_NAME' pelo nome do seu bucket S3
+S3_BUCKET_NAME="ste-siapesq"
+
+# --- EXECUÇÃO ---
+aws s3 ls s3://"$S3_BUCKET_NAME"/ --recursive | awk '{
+    full_path = $4;
+    # Imprime todos os diretórios pai
+    num_parts = split(full_path, path_segments, "/");
+    current_dir = "";
+    for (i = 1; i < num_parts; i++) {
+        current_dir = current_dir path_segments[i] "/";
+        print current_dir;
+    }
+    # Imprime o caminho completo (que pode ser um arquivo ou uma pasta vazia)
+    print full_path;
+}' | sort -u
