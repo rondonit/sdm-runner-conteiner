@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-RUN R -q -e "install.packages(c('rgbif','dplyr','tidyr','usdm','maps','sdm'), repos='https://cloud.r-project.org')"
+RUN R -q -e "install.packages(c('rgbif','dplyr','tidyr','usdm','maps','sdm','argparse'), repos='https://cloud.r-project.org')"
 
 WORKDIR /app
 
